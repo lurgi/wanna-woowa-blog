@@ -2,7 +2,7 @@ name: vercel 배포
 
 on:
   push:
-    branches: [build]
+    branches: [main]
 
 jobs:
   build:
@@ -24,5 +24,5 @@ jobs:
           user-email: wahoo9040@naver.com
           commit-message: "build to vercel"
           target-branch: main
-      - name: 클론된 경로를 확인하세요
+      - name: 클론 경로를 echo
         run: echo $DESTINATION_CLONED_DIRECTORY
