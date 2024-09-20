@@ -1,4 +1,4 @@
-name: git push into another repo to deploy to vercel
+name: vercel 배포
 
 on:
   push:
@@ -10,11 +10,9 @@ jobs:
     container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      - name: creates output
+      - name: 상위 디렉토리로 이동 후 ./wanna-woowa-blog/ 디렉토리 재귀적으로 복사
         run: sh ./build.sh
-      - name: Pushes to another repository
+      - name: lurgi 개인 레포로 푸시
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -26,5 +24,5 @@ jobs:
           user-email: wahoo9040@naver.com
           commit-message: "build to vercel"
           target-branch: main
-      - name: Test get variable exported by push-to-another-repository
+      - name: 클론된 경로를 확인하세요
         run: echo $DESTINATION_CLONED_DIRECTORY
